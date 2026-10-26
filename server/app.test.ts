@@ -43,9 +43,9 @@ describe('API', () => {
     regInfo.clientId = reg.data.user.id
   })
 
-  it('la información pública muestra el correo y no el teléfono', async () => {
+  it('la información pública solo muestra el correo de contacto', async () => {
     const info = await call('GET', '/info')
-    expect(info.data).toEqual({ lender: 'Admin', email: 'contacto@example.com', city: 'Mérida, Yucatán' })
+    expect(info.data).toEqual({ email: 'contacto@example.com' })
   })
 
   it('exige aceptar los términos al registrarse', async () => {

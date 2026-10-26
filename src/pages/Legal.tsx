@@ -1,28 +1,26 @@
 import { storedUser } from '../api.ts'
 import { Screen } from '../components/common.tsx'
 import { useApi } from '../hooks.ts'
-import type { LenderInfo } from '../types.ts'
+import type { PublicInfo } from '../types.ts'
 
-function useLender() {
-  const { data } = useApi<LenderInfo>('/info')
-  return {
-    name: data?.lender || 'la persona que otorga el préstamo',
-    contact: data?.email ? `al correo ${data.email}` : 'por los medios de contacto que te proporcionó',
-  }
+function useContact() {
+  const { data } = useApi<PublicInfo>('/info')
+  return data?.email ? `al correo ${data.email}` : 'por los medios de contacto que te proporcionó'
 }
 
 const UPDATED = '26 de octubre de 2026'
 
 export function Privacy() {
-  const lender = useLender()
+  const contact = useContact()
   return (
     <Screen title="Aviso de privacidad" back tabs={!!storedUser()}>
       <article className="legal">
         <p className="muted">Última actualización: {UPDATED}</p>
         <h2>Responsable</h2>
         <p>
-          {lender.name} es responsable del tratamiento de tus datos personales, conforme a la Ley Federal de
-          Protección de Datos Personales en Posesión de los Particulares.
+          La persona que te otorga el préstamo (en adelante, el Responsable) es responsable del tratamiento de tus
+          datos personales, conforme a la Ley Federal de Protección de Datos Personales en Posesión de los
+          Particulares. Puedes contactar al Responsable {contact}.
         </p>
         <h2>Datos que recabamos</h2>
         <ul>
@@ -50,7 +48,7 @@ export function Privacy() {
         <h2>Tus derechos (ARCO)</h2>
         <p>
           Puedes acceder, rectificar, cancelar u oponerte al uso de tus datos, o revocar tu consentimiento,
-          comunicándote {lender.contact}. Responderemos en un plazo máximo de 20 días hábiles. La cancelación
+          comunicándote {contact}. Responderemos en un plazo máximo de 20 días hábiles. La cancelación
           de datos relacionados con un adeudo vigente procederá cuando este quede liquidado.
         </p>
         <h2>Conservación</h2>
@@ -66,25 +64,25 @@ export function Privacy() {
 }
 
 export function Terms() {
-  const lender = useLender()
+  const contact = useContact()
   return (
     <Screen title="Términos y deslinde" back tabs={!!storedUser()}>
       <article className="legal">
         <p className="muted">Última actualización: {UPDATED}</p>
         <h2>Qué es esta aplicación</h2>
         <p>
-          Esta aplicación es una herramienta para llevar el registro de préstamos personales entre {lender.name} y
-          sus clientes. No es una institución financiera, no capta recursos del público y no está supervisada por
+          Esta aplicación es una herramienta para llevar el registro de préstamos personales entre quien otorga el
+          préstamo y sus clientes. No es una institución financiera, no capta recursos del público y no está supervisada por
           la CNBV ni por la CONDUSEF.
         </p>
         <h2>Acuerdo entre particulares</h2>
         <p>
-          Cada préstamo es un acuerdo directo entre {lender.name} y el cliente. Las condiciones (cantidad, interés,
+          Cada préstamo es un acuerdo directo entre quien lo otorga y el cliente. Las condiciones (cantidad, interés,
           plazo y comisión por atraso) se muestran antes de firmar y quedan establecidas en el pagaré.
         </p>
         <h2>Información mostrada</h2>
         <p>
-          Los saldos se calculan con los pagos registrados. Si encuentras una diferencia, comunícate {lender.contact}
+          Los saldos se calculan con los pagos registrados. Si encuentras una diferencia, comunícate {contact}
           para aclararla; conserva tus comprobantes de pago. En caso de discrepancia prevalece lo acordado en el
           pagaré y los comprobantes de pago.
         </p>

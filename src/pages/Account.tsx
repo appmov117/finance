@@ -1,4 +1,4 @@
-import { LogOut } from 'lucide-react'
+import { BookOpen, ChevronRight, LogOut } from 'lucide-react'
 import { useState, type FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router'
 import { api, clearSession, storedUser, updateStoredUser } from '../api.ts'
@@ -56,6 +56,16 @@ export function Account() {
           <button className="btn block" disabled={busy}>{busy ? 'Guardando...' : 'Guardar cambios'}</button>
         </form>
       </Section>
+      {user.role === 'admin' && (
+        <Link to="/manual" className="row">
+          <span className="avatar"><BookOpen size={20} /></span>
+          <span className="main">
+            <strong>Manual de uso</strong>
+            <span className="muted">Pasos para préstamos, pagos, firmas y más</span>
+          </span>
+          <ChevronRight size={18} />
+        </Link>
+      )}
       {user.role === 'client' && (
         <Section title="Tu credencial (INE)">
           <IdPhotos />

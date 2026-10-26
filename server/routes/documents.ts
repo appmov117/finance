@@ -47,8 +47,7 @@ export function documentRoutes(db: DB, auth: Auth, config: DocsConfig) {
   }
 
   app.get('/info', async (c) => {
-    const [lender] = await db.select().from(users).where(eq(users.role, 'admin')).orderBy(asc(users.id)).limit(1)
-    return c.json({ lender: lender?.name ?? '', email: config.contactEmail, city: config.city })
+    return c.json({ email: config.contactEmail })
   })
 
   app.get('/me/id-photos', async (c) => {

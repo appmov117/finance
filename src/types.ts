@@ -65,8 +65,6 @@ export interface Contract {
   meta?: { ip: string; userAgent: string; inPerson?: boolean } | null
 }
 
-export interface LenderInfo {
-  lender: string
+export interface PublicInfo {
   email: string
-  city: string
 }

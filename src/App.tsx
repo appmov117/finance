@@ -5,6 +5,7 @@ import { ClientDetail, Requests } from './pages/admin/ClientDetail.tsx'
 import { Clients, NewClient } from './pages/admin/Clients.tsx'
 import { AdminHome } from './pages/admin/Home.tsx'
 import { AddPayment, AdminLoan, ApproveLoan, NewLoan } from './pages/admin/Loan.tsx'
+import { Manual } from './pages/admin/Manual.tsx'
 import { Login, Register } from './pages/Auth.tsx'
 import { AdminContract, AdminSign, ClientContract } from './pages/Contract.tsx'
 import { Privacy, Terms } from './pages/Legal.tsx'
@@ -41,6 +42,7 @@ function AppRoutes() {
         <Route path="/privacidad" element={<Privacy />} />
         <Route path="/terminos" element={<Terms />} />
         <Route path="/cuenta" element={<Account />} />
+        <Route path="/manual" element={<Manual />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     )
