@@ -14,6 +14,7 @@ type LoanRow = typeof loans.$inferSelect
 export interface DocsConfig {
   timezone: string
   city: string
+  contactEmail: string
 }
 
 export function documentRoutes(db: DB, auth: Auth, config: DocsConfig) {
@@ -47,7 +48,7 @@ export function documentRoutes(db: DB, auth: Auth, config: DocsConfig) {
 
   app.get('/info', async (c) => {
     const [lender] = await db.select().from(users).where(eq(users.role, 'admin')).orderBy(asc(users.id)).limit(1)
-    return c.json({ lender: lender?.name ?? '', phone: lender?.phone ?? '', city: config.city })
+    return c.json({ lender: lender?.name ?? '', email: config.contactEmail, city: config.city })
   })
 
   app.get('/me/id-photos', async (c) => {

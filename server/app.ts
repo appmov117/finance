@@ -14,6 +14,8 @@ export interface AppConfig {
   timezone: string
   /** Lugar de suscripción que aparece en los pagarés. */
   city: string
+  /** Correo de contacto que aparece en el aviso de privacidad y los términos. */
+  contactEmail: string
   admin: { phone: string; pin: string; name: string }
 }
 

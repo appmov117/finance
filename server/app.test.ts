@@ -9,6 +9,7 @@ const config: AppConfig = {
   secretKey: 'x'.repeat(40),
   timezone: 'America/Mexico_City',
   city: 'Mérida, Yucatán',
+  contactEmail: 'contacto@example.com',
   admin: { phone: '9990000000', pin: '1234', name: 'Admin' },
 }
 const app = createApp(config)
@@ -40,6 +41,11 @@ describe('API', () => {
     expect(reg.status).toBe(201)
     client = reg.data.token
     regInfo.clientId = reg.data.user.id
+  })
+
+  it('la información pública muestra el correo y no el teléfono', async () => {
+    const info = await call('GET', '/info')
+    expect(info.data).toEqual({ lender: 'Admin', email: 'contacto@example.com', city: 'Mérida, Yucatán' })
   })
 
   it('exige aceptar los términos al registrarse', async () => {

@@ -21,5 +21,7 @@ services:
         value: Administradora
       - key: CONTRACT_CITY
         sync: false
+      - key: CONTACT_EMAIL
+        sync: false
       - key: TIMEZONE
         value: America/Mexico_City

@@ -1,6 +1,5 @@
 import { storedUser } from '../api.ts'
 import { Screen } from '../components/common.tsx'
-import { prettyPhone } from '../format.ts'
 import { useApi } from '../hooks.ts'
 import type { LenderInfo } from '../types.ts'
 
@@ -8,7 +7,7 @@ function useLender() {
   const { data } = useApi<LenderInfo>('/info')
   return {
     name: data?.lender || 'la persona que otorga el préstamo',
-    contact: data?.phone ? `al teléfono o WhatsApp ${prettyPhone(data.phone)}` : 'por los medios de contacto que te proporcionó',
+    contact: data?.email ? `al correo ${data.email}` : 'por los medios de contacto que te proporcionó',
   }
 }
 

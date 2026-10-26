@@ -43,6 +43,7 @@ cp .env.example .env   # y completa los valores
 | `ADMIN_PIN` | PIN de 4 a 6 dígitos de la administradora |
 | `ADMIN_NAME` | Nombre a mostrar (opcional) |
 | `CONTRACT_CITY` | Lugar de firma que aparece en los pagarés (por ejemplo `Mérida, Yucatán`) |
+| `CONTACT_EMAIL` | Correo de contacto en el aviso de privacidad y los términos |
 | `TIMEZONE` | Zona horaria para calcular atrasos (por defecto `America/Mexico_City`) |
 | `PORT` | Puerto del servidor (por defecto 3000) |
 

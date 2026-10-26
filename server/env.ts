@@ -11,6 +11,7 @@ const schema = z.object({
   ADMIN_NAME: z.string().default('Administradora'),
   TIMEZONE: z.string().default('America/Mexico_City'),
   CONTRACT_CITY: z.string().default(''),
+  CONTACT_EMAIL: z.union([z.email('CONTACT_EMAIL debe ser un correo válido'), z.literal('')]).default(''),
   PORT: z.coerce.number().default(3000),
 })
 

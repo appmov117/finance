@@ -14,6 +14,11 @@ export function useApi<T>(path: string) {
       .catch((e: Error) => setError(e.message))
   }, [path])
   useEffect(reload, [reload])
+  useEffect(() => {
+    const onVisible = () => document.visibilityState === 'visible' && reload()
+    document.addEventListener('visibilitychange', onVisible)
+    return () => document.removeEventListener('visibilitychange', onVisible)
+  }, [reload])
   return { data, error, reload }
 }
 

@@ -67,6 +67,6 @@ export interface Contract {
 
 export interface LenderInfo {
   lender: string
-  phone: string
+  email: string
   city: string
 }
